@@ -32,7 +32,7 @@ body {
   font-family: 'Orbitron', sans-serif;
   text-align: center;
   padding: 40px;
-  background: var(--bg-light) no-repeat center center;
+  background: var(--bg-light) no-repeat center center fixed;
   background-size: cover;
   color: var(--text-light);
   user-select: none;
@@ -41,9 +41,11 @@ body {
 
 /* Dark mode */
 body.dark-mode {
-  background: var(--bg-dark) no-repeat center center;
+  background: var(--bg-dark) no-repeat center center fixed;
+  background-size: cover;
   color: var(--text-dark);
 }
+
 
 /* Headers */
 h1, h2, h3 {
