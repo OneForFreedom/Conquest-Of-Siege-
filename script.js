@@ -195,18 +195,23 @@ function updateTimerMini() {
 }
 
 function endMini(win) {
-  mini.running=false;
-  overlay.style.display="none";
-  startBtn.style.display="inline-block";
-  if(win){
+  mini.running = false;
+  overlay.style.display = "none";
+  startBtn.style.display = "inline-block";
+
+  if (win) {
     messageBox.textContent = "🏆 Mini-game success! Multiplier applied!";
-    performRebirth(true);
+    performRebirth(true); // Successful siege = rebirth with multiplier
   } else {
     messageBox.textContent = "❌ Mini-game failed. Soldiers retreat!";
-    gameState.count = 0;
-    gameState.soldiersPerSecond = 0;
-    gameState.itemPrices = items.map(i => i.cost);
+    
+    // Punishment reset
+    gameState.count = 0;                     // Fleet gone
+    gameState.soldiersPerSecond = 0;         // Training rate lost
+    gameState.itemPrices = items.map(i => i.cost); // Shop reset
+
     updatePrices();
+    updateGame();
   }
 }
 
