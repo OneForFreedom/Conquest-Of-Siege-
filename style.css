@@ -1,29 +1,19 @@
-/* Import cold & harsh font */
+/* Orbitron font */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-/* Variables */
 :root {
   --bg-light: url('lightbg.jpg');
   --bg-dark: url('drkbg.png');
-
-  --text-light: #5C3A21;    /* Dark brown for light mode */
-  --text-dark: #FFDFA0;     /* Sandy yellow for dark mode */
-
+  --text-light: #5C3A21;
+  --text-dark: #FFDFA0;
   --accent-light: #5C3A21;
   --accent-dark: #FFDFA0;
-
   --btn-bg-light: #5C3A21;
   --btn-bg-dark: #FFDFA0;
-
   --btn-text-light: #fff;
   --btn-text-dark: #000;
-
-  --btn-hover-light: #7B4F30;
-  --btn-hover-dark: #FFEFA0;
-
   --shop-bg-light: #f9f0f4;
   --shop-bg-dark: #1e1e1e;
-
   --border-light: #d8b6c4;
   --border-dark: #444;
 }
@@ -39,75 +29,46 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* Dark mode */
 body.dark-mode {
   background: var(--bg-dark) no-repeat center center fixed;
   background-size: cover;
   color: var(--text-dark);
 }
 
-
-/* Headers */
-h1, h2, h3 {
+h1,h2,h3 {
   color: var(--accent-light);
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  letter-spacing: 1px;
   text-transform: uppercase;
-  transition: color 0.5s ease;
 }
 
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3 {
+body.dark-mode h1,h2,h3 {
   color: var(--accent-dark);
 }
 
-/* Sword image */
 img.sword-img {
   width: 200px;
-  height: auto;
   margin: 20px 0;
-  transition: transform 0.1s ease;
   cursor: pointer;
+  transition: transform 0.1s;
 }
-
 img.sword-img:active {
   transform: scale(0.85) rotate(-15deg);
 }
 
-/* Buttons */
 button {
   padding: 14px 30px;
   font-size: 20px;
-  border: none;
   border-radius: 10px;
   cursor: pointer;
   margin-top: 25px;
-  transition: background 0.2s, color 0.2s;
 }
 
-/* Appearance button */
 .top-bar button {
   background-color: var(--btn-bg-light);
   color: var(--btn-text-light);
 }
-
 body.dark-mode .top-bar button {
   background-color: var(--btn-bg-dark);
   color: var(--btn-text-dark);
-}
-
-.top-bar button:hover {
-  background-color: var(--btn-hover-light);
-}
-
-body.dark-mode .top-bar button:hover {
-  background-color: var(--btn-hover-dark);
-}
-
-/* Shop items */
-.shop {
-  margin-top: 40px;
 }
 
 .shop-item {
@@ -121,75 +82,37 @@ body.dark-mode .top-bar button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background 0.3s, color 0.3s, border 0.3s;
 }
-
 body.dark-mode .shop-item {
   background-color: var(--shop-bg-dark);
   border: 2px solid var(--border-dark);
   color: var(--text-dark);
 }
 
-.shop-item button {
-  margin-left: 15px;
-  background-color: var(--btn-bg-light);
-  color: var(--btn-text-light);
+/* Mini-game overlay */
+#miniGameOverlay {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.85);
+  z-index:1000;
+  color:#FFDFA0;
+  text-align:center;
+  padding-top:50px;
 }
 
-body.dark-mode .shop-item button {
-  background-color: var(--btn-bg-dark);
-  color: var(--btn-text-dark);
+#overlayContent {
+  display:inline-block;
+  background:#333;
+  padding:20px;
+  border-radius:12px;
 }
 
-.shop-item button:hover {
-  background-color: var(--btn-hover-light);
-}
-
-body.dark-mode .shop-item button:hover {
-  background-color: var(--btn-hover-dark);
-}
-
-/* Top bar */
-.top-bar {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-}
-
-/* Reaction Test */
-#reactionTest {
-  margin-top: 30px;
-  display: none;
-}
-
-#reactionScreen {
-  width: 250px;
-  height: 150px;
-  margin: 20px auto;
-  background-color: red;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background 0.2s;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
-
-#reactionMessage {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: var(--accent-light);
-}
-
-body.dark-mode #reactionMessage {
-  color: var(--accent-dark);
-}
-
-@media (max-width: 600px) {
-  .top-bar button {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  .shop-item {
-    width: 90%;
-    font-size: 16px;
-  }
-}
+#gameCanvas { background:#222; border:2px solid #fff; display:block; margin:20px auto; }
+#fillBarContainer { width:80%; height:20px; background:#444; margin:10px auto; border-radius:10px; overflow:hidden; }
+#fillBar { width:0%; height:100%; background:limegreen; }
+#timer { font-size:18px; margin-top:10px; }
+#messageMini { margin-top:10px; font-size:18px; }
