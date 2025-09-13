@@ -1,48 +1,88 @@
+/* Import cold & harsh font */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 :root {
-  --bg: url('lightbg.jpg');
-  --bg-start: #8B0000; /* dark blood red gradient start */
-  --bg-mid: #A80000;   /* dark blood red mid */
-  --bg-end: #C70000;   /* dark blood red end */
-  --text: #8B0000;     /* dark red text in light mode */
-  --accent: #C70000;   /* blood red for headings, buttons accent */
-  --btn-bg: #C70000;   
-  --btn-text: #ffffff;    
-  --btn-hover: #FF0000;   /* bright red hover */
-  --shop-bg: #4A0000;     
-  --border: #5A0000;  
-}
+  /* Backgrounds */
+  --bg-light: url('lightbg.jpg');
+  --bg-dark: url('drkbg.png');
 
-.dark-mode {
-  --bg: url('drkbg.png');
-  --text: #FF0000;        /* bright red text in dark mode */
-  --accent: #FF0000;      /* blood red accent in dark mode */
-  --btn-bg: #FF0000;      
+  /* Gradients for light mode */
+  --bg-start: #4A0000; /* dark blood red */
+  --bg-mid: #8B0000;
+  --bg-end: #C70000;
+
+  /* Text */
+  --text-light: #8B0000; /* dark red in light mode */
+  --text-dark: #FF0000;  /* bright red in dark mode */
+
+  /* Accent / headings / buttons */
+  --accent-light: #8B0000;
+  --accent-dark: #FF0000;
+
+  /* Buttons */
+  --btn-bg-light: #8B0000;
+  --btn-bg-dark: #FF0000;
   --btn-text: #ffffff;
-  --btn-hover: #FF4C4C;   /* lighter blood red hover */
-  --shop-bg: #1e1e1e;
-  --border: #660000;      /* dark blood red border */
+  --btn-hover-light: #A80000;
+  --btn-hover-dark: #FF4C4C;
+
+  /* Shop items */
+  --shop-bg-light: #4A0000;
+  --shop-bg-dark: #1E1E1E;
+  --border-light: #5A0000;
+  --border-dark: #660000;
 }
 
 body {
   font-family: 'Orbitron', sans-serif;
   text-align: center;
   padding: 40px;
-  background: var(--bg) no-repeat center center;
+  color: var(--text-light);
+  background: var(--bg-light) no-repeat center center;
   background-size: cover;
-  color: var(--text);
   user-select: none;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.5s ease, color 0.5s ease;
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
 }
 
+/* Background fade using pseudo-element */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--bg-light) no-repeat center center;
+  background-size: cover;
+  z-index: -1;
+  transition: background 0.5s ease;
+}
+
+body.dark-mode {
+  color: var(--text-dark);
+}
+
+body.dark-mode::before {
+  background: var(--bg-dark) no-repeat center center;
+}
+
+/* Headings */
 h1, h2, h3 {
-  color: var(--accent);
+  color: var(--accent-light);
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
+  transition: color 0.5s ease;
 }
 
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+  color: var(--accent-dark);
+}
+
+/* Images */
 img.sword-img {
   width: 200px;
   height: auto;
@@ -55,22 +95,32 @@ img.sword-img:active {
   transform: scale(0.85) rotate(-15deg);
 }
 
+/* Buttons */
 button {
   padding: 14px 30px;
   font-size: 20px;
-  background-color: var(--btn-bg);
+  background-color: var(--btn-bg-light);
   color: var(--btn-text);
   border: none;
   border-radius: 10px;
   cursor: pointer;
   margin-top: 25px;
-  transition: background 0.2s;
+  transition: background 0.3s, color 0.3s;
 }
 
 button:hover {
-  background-color: var(--btn-hover);
+  background-color: var(--btn-hover-light);
 }
 
+body.dark-mode button {
+  background-color: var(--btn-bg-dark);
+}
+
+body.dark-mode button:hover {
+  background-color: var(--btn-hover-dark);
+}
+
+/* Shop items */
 .shop {
   margin-top: 40px;
 }
@@ -79,19 +129,27 @@ button:hover {
   margin: 10px auto;
   padding: 15px;
   width: 60%;
-  background-color: var(--shop-bg);
-  border: 2px solid var(--border);
+  background-color: var(--shop-bg-light);
+  border: 2px solid var(--border-light);
   border-radius: 8px;
-  color: var(--text);
+  color: var(--text-light);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background 0.5s ease, color 0.5s ease, border 0.5s ease;
+}
+
+body.dark-mode .shop-item {
+  background-color: var(--shop-bg-dark);
+  border: 2px solid var(--border-dark);
+  color: var(--text-dark);
 }
 
 .shop-item button {
   margin-left: 15px;
 }
 
+/* Top bar */
 .top-bar {
   position: fixed;
   top: 10px;
@@ -108,17 +166,26 @@ button:hover {
   width: 250px;
   height: 150px;
   margin: 20px auto;
-  background-color: red;
+  background-color: var(--accent-light);
   border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.3s ease;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+body.dark-mode #reactionScreen {
+  background-color: var(--accent-dark);
 }
 
 #reactionMessage {
   font-size: 22px;
   margin-bottom: 10px;
-  color: var(--accent);
+  color: var(--accent-light);
+  transition: color 0.5s ease;
+}
+
+body.dark-mode #reactionMessage {
+  color: var(--accent-dark);
 }
 
 @media (max-width: 600px) {
