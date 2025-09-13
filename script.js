@@ -33,8 +33,8 @@ let gameState = {
 // DOM elements
 const countDisplay = document.getElementById("count");
 const rebirthDisplay = document.getElementById("rebirths");
-const mpsDisplay = document.getElementById("mps");
-const mpcDisplay = document.getElementById("tpc");
+const mpsDisplay = document.getElementById("sps");
+const mpcDisplay = document.getElementById("spc");
 const messageBox = document.getElementById("message");
 const rebirthButton = document.getElementById("rebirthBtn");
 
