@@ -1,25 +1,24 @@
-/* Orbitron font */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
 :root {
   --bg-light: url('lightbg.jpg');
   --bg-dark: url('drkbg.png');
-  --text-light: #5C3A21;
-  --text-dark: #FFDFA0;
-  --accent-light: #5C3A21;
-  --accent-dark: #FFDFA0;
-  --btn-bg-light: #5C3A21;
-  --btn-bg-dark: #FFDFA0;
+  --text-light: #2B0000;   /* deep blood red */
+  --text-dark: #FF4C4C;    /* bright, harsh red */
+  --accent-light: #B30000; /* intense dark red */
+  --accent-dark: #FF4C4C;  /* neon blood red */
+  --btn-bg-light: #8B0000; /* dark crimson */
+  --btn-bg-dark: #FF1A1A;  /* harsh red */
   --btn-text-light: #fff;
   --btn-text-dark: #000;
-  --shop-bg-light: #f9f0f4;
-  --shop-bg-dark: #1e1e1e;
-  --border-light: #d8b6c4;
-  --border-dark: #444;
+  --shop-bg-light: #1a1a1a;
+  --shop-bg-dark: #000;
+  --border-light: #660000;
+  --border-dark: #FF1A1A;
 }
 
 body {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Share Tech Mono', monospace;
   text-align: center;
   padding: 40px;
   background: var(--bg-light) no-repeat center center fixed;
@@ -44,22 +43,14 @@ body.dark-mode h1,h2,h3 {
   color: var(--accent-dark);
 }
 
-img.sword-img {
-  width: 200px;
-  margin: 20px 0;
-  cursor: pointer;
-  transition: transform 0.1s;
-}
-img.sword-img:active {
-  transform: scale(0.85) rotate(-15deg);
-}
-
+/* Buttons sharper, harsher */
 button {
   padding: 14px 30px;
   font-size: 20px;
-  border-radius: 10px;
+  border-radius: 0px; /* no roundness, harsh edges */
   cursor: pointer;
   margin-top: 25px;
+  font-weight: bold;
 }
 
 .top-bar button {
