@@ -50,13 +50,14 @@ body.dark-mode {
   color: var(--text-dark);
 }
 
-h1,h2,h3 {
-  color: var(--accent-light);
+h1, h2, h3 {
+  color: #1c0003;  /* dark red in light mode */
   text-transform: uppercase;
 }
 
-body.dark-mode h1,h2,h3 {
-  color: var(--accent-dark);
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
+  color: var(--accent-dark); 
 }
 
 /* Buttons sharper, harsher */
