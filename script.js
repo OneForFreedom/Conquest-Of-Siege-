@@ -217,5 +217,14 @@ function performRebirth(multiplier=false) {
   updateGame();
 }
 
+function resetAllData() {
+  if (confirm("Are you sure? This will erase all saved progress!")) {
+    localStorage.clear();
+    sessionStorage.clear(); 
+    alert("All data has been reset.");
+    location.reload(); 
+  }
+}
+
 
 window.onload = () => { loadGame(); loadTheme(); updateGame(); };
