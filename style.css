@@ -5,8 +5,8 @@
   --bg-light: url('lightbg.jpg');
   --bg-dark: url('drkbg.png');
   
-  --text: #FFFFFF;       /* dark red text in light mode */
-  --text-dark: #000000;  /* bright red in dark mode */
+  --text: #8B0000;       /* dark red text in light mode */
+  --text-dark: #FF0000;  /* bright red in dark mode */
   
   --accent: #8B0000;     /* dark red accent */
   --accent-dark: #FF0000;
@@ -17,8 +17,8 @@
   --btn-hover: #A80000;
   --btn-hover-dark: #FF4C4C;
   
-  --shop-bg-light: #d3d3d3; /* light grey boxes in light mode */
-  --shop-bg-dark: #1e1e1e;  /* dark boxes in dark mode */
+  --shop-bg-light: #FFFFFF; /* light grey boxes in light mode */
+  --shop-bg-dark: #000000;  /* dark boxes in dark mode */
   --border-light: #888;
   --border-dark: #660000;
 }
