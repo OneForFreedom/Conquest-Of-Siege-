@@ -32,6 +32,18 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
+img.sword-img {
+  width: 120px;  /* smaller, more reasonable size */
+  height: auto;  /* keeps original proportions */
+  margin: 20px 0;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+img.sword-img:active {
+  transform: scale(0.85) rotate(-15deg);
+}
+
 body.dark-mode {
   background: var(--bg-dark) no-repeat center center fixed;
   background-size: cover;
