@@ -1,45 +1,53 @@
 /* Import cold & harsh font */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
+/* Variables */
 :root {
-  --bg: url('lightbg.jpg');
-  --bg-start: #ffe4ec;
-  --bg-mid: #ffc1d9;
-  --bg-end: #ff9bb6;
-  --text: #8B0000;       
-  --accent: #ff77a9;      
-  --btn-bg: #ff77a9;      
-  --btn-text: #ffffff;    
-  --btn-hover: #e65c91;   
-  --shop-bg: #f9f0f4;     
-  --border: #d8b6c4;  
-}
+  --bg-light: url('lightbg.jpg');
+  --bg-dark: url('drkbg.png');
 
-.dark-mode {
-  --bg: url('drkbg.png');
-  --text: #FF0000;        
-  --accent: #ff80ab;
-  --btn-bg: #ff4081;
-  --btn-text: #ffffff;
-  --btn-hover: #e91e63;
-  --shop-bg: #1e1e1e;
-  --border: #444;
+  --text-light: #5C3A21;    /* Dark brown for light mode */
+  --text-dark: #FFDFA0;     /* Sandy yellow for dark mode */
+
+  --accent-light: #5C3A21;
+  --accent-dark: #FFDFA0;
+
+  --btn-bg-light: #5C3A21;
+  --btn-bg-dark: #FFDFA0;
+
+  --btn-text-light: #fff;
+  --btn-text-dark: #000;
+
+  --btn-hover-light: #7B4F30;
+  --btn-hover-dark: #FFEFA0;
+
+  --shop-bg-light: #f9f0f4;
+  --shop-bg-dark: #1e1e1e;
+
+  --border-light: #d8b6c4;
+  --border-dark: #444;
 }
 
 body {
   font-family: 'Orbitron', sans-serif;
   text-align: center;
   padding: 40px;
-  background: var(--bg) no-repeat center center;
+  background: var(--bg-light) no-repeat center center;
   background-size: cover;
-  color: var(--text);
+  color: var(--text-light);
   user-select: none;
   transition: background 0.3s, color 0.3s;
 }
 
+/* Dark mode */
+body.dark-mode {
+  background: var(--bg-dark) no-repeat center center;
+  color: var(--text-dark);
+}
+
 /* Headers */
 h1, h2, h3 {
-  color: #5C3A21; /* Dark brown in light mode */
+  color: var(--accent-light);
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -49,7 +57,7 @@ h1, h2, h3 {
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3 {
-  color: #FFDFA0; /* Sandy yellow in dark mode */
+  color: var(--accent-dark);
 }
 
 /* Sword image */
@@ -73,26 +81,26 @@ button {
   border-radius: 10px;
   cursor: pointer;
   margin-top: 25px;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 
 /* Appearance button */
 .top-bar button {
-  background-color: #5C3A21; /* Dark brown */
-  color: #fff;
+  background-color: var(--btn-bg-light);
+  color: var(--btn-text-light);
 }
 
 body.dark-mode .top-bar button {
-  background-color: #FFDFA0; /* Sandy yellow */
-  color: #000;
+  background-color: var(--btn-bg-dark);
+  color: var(--btn-text-dark);
 }
 
 .top-bar button:hover {
-  background-color: #7B4F30; /* Slightly lighter brown */
+  background-color: var(--btn-hover-light);
 }
 
 body.dark-mode .top-bar button:hover {
-  background-color: #FFEFA0; /* Slightly brighter sandy yellow */
+  background-color: var(--btn-hover-dark);
 }
 
 /* Shop items */
@@ -104,32 +112,39 @@ body.dark-mode .top-bar button:hover {
   margin: 10px auto;
   padding: 15px;
   width: 60%;
-  background-color: var(--shop-bg);
-  border: 2px solid var(--border);
+  background-color: var(--shop-bg-light);
+  border: 2px solid var(--border-light);
   border-radius: 8px;
-  color: var(--text);
+  color: var(--text-light);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+body.dark-mode .shop-item {
+  background-color: var(--shop-bg-dark);
+  border: 2px solid var(--border-dark);
+  color: var(--text-dark);
 }
 
 .shop-item button {
   margin-left: 15px;
-  background-color: #5C3A21; /* Dark brown */
-  color: #fff;
+  background-color: var(--btn-bg-light);
+  color: var(--btn-text-light);
 }
 
 body.dark-mode .shop-item button {
-  background-color: #FFDFA0; /* Sandy yellow */
-  color: #000;
+  background-color: var(--btn-bg-dark);
+  color: var(--btn-text-dark);
 }
 
 .shop-item button:hover {
-  background-color: #7B4F30;
+  background-color: var(--btn-hover-light);
 }
 
 body.dark-mode .shop-item button:hover {
-  background-color: #FFEFA0;
+  background-color: var(--btn-hover-dark);
 }
 
 /* Top bar */
@@ -159,7 +174,11 @@ body.dark-mode .shop-item button:hover {
 #reactionMessage {
   font-size: 22px;
   margin-bottom: 10px;
-  color: var(--accent);
+  color: var(--accent-light);
+}
+
+body.dark-mode #reactionMessage {
+  color: var(--accent-dark);
 }
 
 @media (max-width: 600px) {
