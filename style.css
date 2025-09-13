@@ -8,7 +8,7 @@
   --text: #8B0000;       /* dark red text in light mode */
   --text-dark: #FF0000;  /* bright red in dark mode */
   
-  --accent: #8B0000;     /* dark red accent */
+  --accent: #8B0000;     
   --accent-dark: #FF0000;
   
   --btn-bg: #8B0000;
@@ -17,8 +17,8 @@
   --btn-hover: #A80000;
   --btn-hover-dark: #FF4C4C;
   
-  --shop-bg-light: #FFFFFF; /* light grey boxes in light mode */
-  --shop-bg-dark: #000000;  /* dark boxes in dark mode */
+  --shop-bg-light: #d3d3d3; /* proper light grey */
+  --shop-bg-dark: #1a1a1a;  /* softer dark grey for readability */
   --border-light: #888;
   --border-dark: #660000;
 }
@@ -31,13 +31,20 @@ body {
   background: var(--bg-light) no-repeat center center;
   background-size: cover;
   user-select: none;
-  transition: background 0.5s, color 0.5s;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
+#sword {
+  width: 150px;   /* make it smaller, adjust to taste */
+  height: auto;   /* keeps proportions so it won’t look squashed */
+  display: block;
+  margin: 10px auto; /* centre it nicely */
+}
 /* Dark mode */
 body.dark-mode {
   color: var(--text-dark);
   background: var(--bg-dark) no-repeat center center;
+  background-size: cover;
 }
 
 /* Headings */
@@ -65,7 +72,7 @@ button {
   border-radius: 10px;
   cursor: pointer;
   margin-top: 25px;
-  transition: background 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -89,18 +96,18 @@ body.dark-mode button:hover {
   margin: 10px auto;
   padding: 15px;
   width: 60%;
-  background-color: var(--shop-bg-light); /* light grey in light mode */
+  background-color: var(--shop-bg-light); 
   border: 2px solid var(--border-light);
   border-radius: 8px;
   color: var(--text);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background 0.3s, color 0.3s, border 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 body.dark-mode .shop-item {
-  background-color: var(--shop-bg-dark); /* dark mode boxes */
+  background-color: var(--shop-bg-dark); 
   border: 2px solid var(--border-dark);
   color: var(--text-dark);
 }
