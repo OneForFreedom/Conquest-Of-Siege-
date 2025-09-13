@@ -5,8 +5,8 @@
   --bg-light: url('lightbg.jpg');
   --bg-dark: url('drkbg.png');
   
-  --text: #8B0000;       /* dark red text in light mode */
-  --text-dark: #FF0000;  /* bright red in dark mode */
+  --text: #FFFFFF;       /* dark red text in light mode */
+  --text-dark: #000000;  /* bright red in dark mode */
   
   --accent: #8B0000;     /* dark red accent */
   --accent-dark: #FF0000;
