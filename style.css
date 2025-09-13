@@ -32,22 +32,16 @@ body {
   font-family: 'Orbitron', sans-serif;
   text-align: center;
   padding: 40px;
-  background: var(--bg-light) no-repeat center center;
+  background: var(--bg) no-repeat center center;
   background-size: cover;
-  color: var(--text-light);
+  color: var(--text);
   user-select: none;
   transition: background 0.3s, color 0.3s;
 }
 
-/* Dark mode */
-body.dark-mode {
-  background: var(--bg-dark) no-repeat center center;
-  color: var(--text-dark);
-}
-
 /* Headers */
 h1, h2, h3 {
-  color: var(--accent-light);
+  color: #5C3A21; /* Dark brown in light mode */
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -57,7 +51,7 @@ h1, h2, h3 {
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3 {
-  color: var(--accent-dark);
+  color: #FFDFA0; /* Sandy yellow in dark mode */
 }
 
 /* Sword image */
@@ -81,26 +75,26 @@ button {
   border-radius: 10px;
   cursor: pointer;
   margin-top: 25px;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s;
 }
 
 /* Appearance button */
 .top-bar button {
-  background-color: var(--btn-bg-light);
-  color: var(--btn-text-light);
+  background-color: #5C3A21; /* Dark brown */
+  color: #fff;
 }
 
 body.dark-mode .top-bar button {
-  background-color: var(--btn-bg-dark);
-  color: var(--btn-text-dark);
+  background-color: #FFDFA0; /* Sandy yellow */
+  color: #000;
 }
 
 .top-bar button:hover {
-  background-color: var(--btn-hover-light);
+  background-color: #7B4F30; /* Slightly lighter brown */
 }
 
 body.dark-mode .top-bar button:hover {
-  background-color: var(--btn-hover-dark);
+  background-color: #FFEFA0; /* Slightly brighter sandy yellow */
 }
 
 /* Shop items */
@@ -112,39 +106,32 @@ body.dark-mode .top-bar button:hover {
   margin: 10px auto;
   padding: 15px;
   width: 60%;
-  background-color: var(--shop-bg-light);
-  border: 2px solid var(--border-light);
+  background-color: var(--shop-bg);
+  border: 2px solid var(--border);
   border-radius: 8px;
-  color: var(--text-light);
+  color: var(--text);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background 0.3s, color 0.3s, border 0.3s;
-}
-
-body.dark-mode .shop-item {
-  background-color: var(--shop-bg-dark);
-  border: 2px solid var(--border-dark);
-  color: var(--text-dark);
 }
 
 .shop-item button {
   margin-left: 15px;
-  background-color: var(--btn-bg-light);
-  color: var(--btn-text-light);
+  background-color: #5C3A21; /* Dark brown */
+  color: #fff;
 }
 
 body.dark-mode .shop-item button {
-  background-color: var(--btn-bg-dark);
-  color: var(--btn-text-dark);
+  background-color: #FFDFA0; /* Sandy yellow */
+  color: #000;
 }
 
 .shop-item button:hover {
-  background-color: var(--btn-hover-light);
+  background-color: #7B4F30;
 }
 
 body.dark-mode .shop-item button:hover {
-  background-color: var(--btn-hover-dark);
+  background-color: #FFEFA0;
 }
 
 /* Top bar */
@@ -174,11 +161,7 @@ body.dark-mode .shop-item button:hover {
 #reactionMessage {
   font-size: 22px;
   margin-bottom: 10px;
-  color: var(--accent-light);
-}
-
-body.dark-mode #reactionMessage {
-  color: var(--accent-dark);
+  color: var(--accent);
 }
 
 @media (max-width: 600px) {
