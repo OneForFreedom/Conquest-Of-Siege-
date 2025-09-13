@@ -4,18 +4,18 @@
   --bg-light: url('lightbg.jpg');
   --bg-dark: url('drkbg.png');
   
-  --text-light: #2B0000;   /* deep blood red */
+  --text-light: #FF4C4C;   /* deep blood red */
   --text-dark: #FF4C4C;    /* bright, harsh red */
   
-  --accent-light: #B30000; /* intense dark red */
+  --accent-light: #FF4C4C; /* intense dark red */
   --accent-dark: #FF4C4C;  /* neon blood red */
   
-  --btn-bg-light: #8B0000; /* dark crimson */
+  --btn-bg-light: #FF1A1A; /* dark crimson */
   --btn-bg-dark: #FF1A1A;  /* harsh red */
   --btn-text-light: #fff;
   --btn-text-dark: #000;
   
-  --shop-bg-light: #1a1a1a;
+  --shop-bg-light: #E0E0E0;
   --shop-bg-dark: #000;
   --border-light: #660000;
   --border-dark: #FF1A1A;
