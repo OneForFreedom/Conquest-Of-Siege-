@@ -2,67 +2,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 :root {
-  --bg-light: url('lightbg.jpg');
-  --bg-dark: url('drkbg.png');
-  
-  --text: #8B0000;       /* dark red text in light mode */
-  --text-dark: #FF0000;  /* bright red in dark mode */
-  
-  --accent: #8B0000;     
-  --accent-dark: #FF0000;
-  
-  --btn-bg: #8B0000;
-  --btn-bg-dark: #FF0000;
-  --btn-text: #fff;
-  --btn-hover: #A80000;
-  --btn-hover-dark: #FF4C4C;
-  
-  --shop-bg-light: #d3d3d3; /* proper light grey */
-  --shop-bg-dark: #1a1a1a;  /* softer dark grey for readability */
-  --border-light: #888;
-  --border-dark: #660000;
+  --bg: url('lightbg.jpg');
+  --bg-start: #ffe4ec;
+  --bg-mid: #ffc1d9;
+  --bg-end: #ff9bb6;
+  --text: #8B0000;       
+  --accent: #ff77a9;      
+  --btn-bg: #ff77a9;      
+  --btn-text: #ffffff;    
+  --btn-hover: #e65c91;   
+  --shop-bg: #f9f0f4;     
+  --border: #d8b6c4;  
+}
+
+.dark-mode {
+  --bg: url('drkbg.png');
+  --text: #FF0000;        
+  --accent: #ff80ab;
+  --btn-bg: #ff4081;
+  --btn-text: #ffffff;
+  --btn-hover: #e91e63;
+  --shop-bg: #1e1e1e;
+  --border: #444;
 }
 
 body {
   font-family: 'Orbitron', sans-serif;
   text-align: center;
   padding: 40px;
-  color: var(--text);
-  background: var(--bg-light) no-repeat center center;
+  background: var(--bg) no-repeat center center;
   background-size: cover;
+  color: var(--text);  /* Uses the red variable */
   user-select: none;
-  transition: background 0.5s ease, color 0.5s ease;
+  transition: background 0.3s, color 0.3s;
 }
 
-#sword {
-  width: 150px;   /* make it smaller, adjust to taste */
-  height: auto;   /* keeps proportions so it won’t look squashed */
-  display: block;
-  margin: 10px auto; /* centre it nicely */
-}
-/* Dark mode */
-body.dark-mode {
-  color: var(--text-dark);
-  background: var(--bg-dark) no-repeat center center;
-  background-size: cover;
-}
-
-/* Headings */
 h1, h2, h3 {
   color: var(--accent);
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: color 0.5s ease;
 }
 
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3 {
-  color: var(--accent-dark);
+img.sword-img {
+  width: 200px;
+  height: auto;
+  margin: 20px 0;
+  transition: transform 0.1s ease;
+  cursor: pointer;
 }
 
-/* Buttons */
+img.sword-img:active {
+  transform: scale(0.85) rotate(-15deg);
+}
+
 button {
   padding: 14px 30px;
   font-size: 20px;
@@ -72,22 +65,13 @@ button {
   border-radius: 10px;
   cursor: pointer;
   margin-top: 25px;
-  transition: background-color 0.3s ease;
+  transition: background 0.2s;
 }
 
 button:hover {
   background-color: var(--btn-hover);
 }
 
-body.dark-mode button {
-  background-color: var(--btn-bg-dark);
-}
-
-body.dark-mode button:hover {
-  background-color: var(--btn-hover-dark);
-}
-
-/* Shop items */
 .shop {
   margin-top: 40px;
 }
@@ -96,31 +80,46 @@ body.dark-mode button:hover {
   margin: 10px auto;
   padding: 15px;
   width: 60%;
-  background-color: var(--shop-bg-light); 
-  border: 2px solid var(--border-light);
+  background-color: var(--shop-bg);
+  border: 2px solid var(--border);
   border-radius: 8px;
   color: var(--text);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
-}
-
-body.dark-mode .shop-item {
-  background-color: var(--shop-bg-dark); 
-  border: 2px solid var(--border-dark);
-  color: var(--text-dark);
 }
 
 .shop-item button {
   margin-left: 15px;
 }
 
-/* Top bar */
 .top-bar {
   position: fixed;
   top: 10px;
   right: 10px;
+}
+
+/* Reaction Test */
+#reactionTest {
+  margin-top: 30px;
+  display: none;
+}
+
+#reactionScreen {
+  width: 250px;
+  height: 150px;
+  margin: 20px auto;
+  background-color: red;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+#reactionMessage {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: var(--accent);
 }
 
 @media (max-width: 600px) {
