@@ -32,14 +32,14 @@ body {
   padding: 40px;
   background: var(--bg) no-repeat center center;
   background-size: cover;
-  color: var(--text);  /* Uses the red variable */
+  color: var(--text);
   user-select: none;
   transition: background 0.3s, color 0.3s;
 }
 
 /* Headers */
 h1, h2, h3 {
-  color: #FFDFA0; /* Sandy yellow in light mode */
+  color: #5C3A21; /* Dark brown in light mode */
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -49,9 +49,10 @@ h1, h2, h3 {
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3 {
-  color: #AFCFFF; /* Moonlight pale blue in dark mode */
+  color: #FFDFA0; /* Sandy yellow in dark mode */
 }
 
+/* Sword image */
 img.sword-img {
   width: 200px;
   height: auto;
@@ -77,21 +78,21 @@ button {
 
 /* Appearance button */
 .top-bar button {
-  background-color: #FFDFA0; /* Sandy yellow */
-  color: #000;               /* Dark text for contrast */
+  background-color: #5C3A21; /* Dark brown */
+  color: #fff;
 }
 
 body.dark-mode .top-bar button {
-  background-color: #AFCFFF; /* Moonlight blue */
-  color: #000022;            /* Darkish text */
+  background-color: #FFDFA0; /* Sandy yellow */
+  color: #000;
 }
 
 .top-bar button:hover {
-  background-color: #FFEFA0; /* Slightly brighter hover */
+  background-color: #7B4F30; /* Slightly lighter brown */
 }
 
 body.dark-mode .top-bar button:hover {
-  background-color: #C7E0FF; /* Slightly brighter hover dark mode */
+  background-color: #FFEFA0; /* Slightly brighter sandy yellow */
 }
 
 /* Shop items */
@@ -114,21 +115,21 @@ body.dark-mode .top-bar button:hover {
 
 .shop-item button {
   margin-left: 15px;
+  background-color: #5C3A21; /* Dark brown */
+  color: #fff;
+}
+
+body.dark-mode .shop-item button {
   background-color: #FFDFA0; /* Sandy yellow */
   color: #000;
 }
 
-body.dark-mode .shop-item button {
-  background-color: #AFCFFF; /* Moonlight blue */
-  color: #000022;
-}
-
 .shop-item button:hover {
-  background-color: #FFEFA0;
+  background-color: #7B4F30;
 }
 
 body.dark-mode .shop-item button:hover {
-  background-color: #C7E0FF;
+  background-color: #FFEFA0;
 }
 
 /* Top bar */
