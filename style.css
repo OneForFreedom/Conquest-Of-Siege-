@@ -140,3 +140,31 @@ body.dark-mode .shop-item {
   font-size:18px; 
   color: #B30000; 
 }
+
+#resetBtn {
+  background: #8B0000;
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  border: 2px solid #FF1A1A;
+  padding: 16px 36px;
+  margin-top: 40px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+}
+
+#resetBtn:hover {
+  background: #FF1A1A;
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.9);
+  transform: scale(1.05);
+}
+
+#resetBtn:active {
+  background: #FF0000;
+  transform: scale(0.95);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 1);
+}
