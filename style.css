@@ -2,34 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 :root {
-  /* Backgrounds */
   --bg-light: url('lightbg.jpg');
   --bg-dark: url('drkbg.png');
-
-  /* Gradients for light mode */
-  --bg-start: #4A0000; /* dark blood red */
-  --bg-mid: #8B0000;
-  --bg-end: #C70000;
-
-  /* Text */
-  --text-light: #8B0000; /* dark red in light mode */
-  --text-dark: #FF0000;  /* bright red in dark mode */
-
-  /* Accent / headings / buttons */
-  --accent-light: #8B0000;
+  
+  --text: #8B0000;       /* dark red text in light mode */
+  --text-dark: #FF0000;  /* bright red text in dark mode */
+  
+  --accent: #8B0000;     /* dark red accent */
   --accent-dark: #FF0000;
-
-  /* Buttons */
-  --btn-bg-light: #8B0000;
+  
+  --btn-bg: #8B0000;
   --btn-bg-dark: #FF0000;
-  --btn-text: #ffffff;
-  --btn-hover-light: #A80000;
+  --btn-text: #fff;
+  --btn-hover: #A80000;
   --btn-hover-dark: #FF4C4C;
-
-  /* Shop items */
-  --shop-bg-light: #4A0000;
-  --shop-bg-dark: #1E1E1E;
-  --border-light: #5A0000;
+  
+  --shop-bg-light: #d3d3d3; /* light grey boxes in light mode */
+  --shop-bg-dark: #1e1e1e;  /* default dark boxes in dark mode */
+  --border-light: #888;
   --border-dark: #660000;
 }
 
@@ -37,14 +27,12 @@ body {
   font-family: 'Orbitron', sans-serif;
   text-align: center;
   padding: 40px;
-  color: var(--text-light);
-  background: var(--bg-light) no-repeat center center;
-  background-size: cover;
+  color: var(--text);
   user-select: none;
-  transition: background 0.5s ease, color 0.5s ease;
   position: relative;
   z-index: 0;
   overflow-x: hidden;
+  transition: color 0.5s ease;
 }
 
 /* Background fade using pseudo-element */
@@ -69,7 +57,7 @@ body.dark-mode::before {
 
 /* Headings */
 h1, h2, h3 {
-  color: var(--accent-light);
+  color: var(--accent);
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -82,34 +70,21 @@ body.dark-mode h3 {
   color: var(--accent-dark);
 }
 
-/* Images */
-img.sword-img {
-  width: 200px;
-  height: auto;
-  margin: 20px 0;
-  transition: transform 0.1s ease;
-  cursor: pointer;
-}
-
-img.sword-img:active {
-  transform: scale(0.85) rotate(-15deg);
-}
-
 /* Buttons */
 button {
   padding: 14px 30px;
   font-size: 20px;
-  background-color: var(--btn-bg-light);
+  background-color: var(--btn-bg);
   color: var(--btn-text);
   border: none;
   border-radius: 10px;
   cursor: pointer;
   margin-top: 25px;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.3s;
 }
 
 button:hover {
-  background-color: var(--btn-hover-light);
+  background-color: var(--btn-hover);
 }
 
 body.dark-mode button {
@@ -129,18 +104,18 @@ body.dark-mode button:hover {
   margin: 10px auto;
   padding: 15px;
   width: 60%;
-  background-color: var(--shop-bg-light);
+  background-color: var(--shop-bg-light); /* light grey in light mode */
   border: 2px solid var(--border-light);
   border-radius: 8px;
-  color: var(--text-light);
+  color: var(--text);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background 0.5s ease, color 0.5s ease, border 0.5s ease;
+  transition: background 0.3s, color 0.3s, border 0.3s;
 }
 
 body.dark-mode .shop-item {
-  background-color: var(--shop-bg-dark);
+  background-color: var(--shop-bg-dark); /* dark mode default */
   border: 2px solid var(--border-dark);
   color: var(--text-dark);
 }
@@ -154,38 +129,6 @@ body.dark-mode .shop-item {
   position: fixed;
   top: 10px;
   right: 10px;
-}
-
-/* Reaction Test */
-#reactionTest {
-  margin-top: 30px;
-  display: none;
-}
-
-#reactionScreen {
-  width: 250px;
-  height: 150px;
-  margin: 20px auto;
-  background-color: var(--accent-light);
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
-
-body.dark-mode #reactionScreen {
-  background-color: var(--accent-dark);
-}
-
-#reactionMessage {
-  font-size: 22px;
-  margin-bottom: 10px;
-  color: var(--accent-light);
-  transition: color 0.5s ease;
-}
-
-body.dark-mode #reactionMessage {
-  color: var(--accent-dark);
 }
 
 @media (max-width: 600px) {
