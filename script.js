@@ -85,10 +85,27 @@ document.getElementById("sword").addEventListener("click", () => {
   updateGame();
 });
 
-// AUTO INCREMENT
-setInterval(() => { 
-  gameState.count += gameState.soldiersPerSecond; 
-  updateGame(); 
+// AUTO INCREMENT SMOOTH
+function incrementSmoothly(amountPerSecond) {
+    if (amountPerSecond <= 0) return;
+
+    let added = 0;
+    const intervalTime = 1000 / amountPerSecond; // milliseconds per +1
+
+    const interval = setInterval(() => {
+        if (added >= amountPerSecond) {
+            clearInterval(interval);
+            return;
+        }
+        gameState.count++;
+        added++;
+        updateGame();
+    }, intervalTime);
+}
+
+// Replace old auto increment with smooth version
+setInterval(() => {
+    incrementSmoothly(gameState.soldiersPerSecond);
 }, 1000);
 
 // SAVE/LOAD
