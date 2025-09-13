@@ -167,6 +167,12 @@ function performRebirth(success = true) {
   }
 }
 
+function endMiniManually() {
+  reactionTest.style.display = "none";
+  rebirthButton.style.display = "inline-block";
+  messageBox.textContent = "Mini-game cancelled.";
+}
+
 // Intervals
 setInterval(passiveGain, 1000);
 setInterval(saveGame, 5000);
