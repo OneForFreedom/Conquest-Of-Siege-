@@ -67,7 +67,7 @@ function buyItem(index) {
     gameState.itemPrices[index] = Math.floor(gameState.itemPrices[index] * 1.25);
     updateGame();
     updatePrices();
-    messageBox.textContent = `⚔️ Trained ${items[index].rate} soldiers per second!`;
+    messageBox.textContent = `⚔️ Trained ${items[index].rate} soldier(s) per second!`;
   } else {
     messageBox.textContent = "Not enough soldiers. Keep training!";
   }
@@ -200,10 +200,10 @@ function endMini(win) {
   startBtn.style.display = "inline-block";
 
   if (win) {
-    messageBox.textContent = "🏆 Mini-game success! Multiplier applied!";
+    messageBox.textContent = "🏆 Your siege was sucessful! Enjoy the bounties!";
     performRebirth(true); // Successful siege = rebirth with multiplier
   } else {
-    messageBox.textContent = "❌ Mini-game failed. Soldiers retreat!";
+    messageBox.textContent = "❌ Your siege failed. All your solders are held permanently captive. REBUILD YOUR ARMY!";
     
     // Punishment reset
     gameState.count = 0;                     // Fleet gone
@@ -237,7 +237,7 @@ function performRebirth(multiplier=false) {
 
 // RESET ALL
 function resetAllData() {
-  if (confirm("Are you sure? This will erase all saved progress!")) {
+  if (confirm("Are you sure? This will erase all saved progress! (You will kill all your solders!)")) {
     localStorage.removeItem("siegeSave");
     localStorage.removeItem("theme");
 
@@ -251,7 +251,7 @@ function resetAllData() {
     updatePrices();
     updateGame();
 
-    alert("All data has been reset.");
+    alert("All data has been reset. Rip your army. They lived a good like");
   }
 }
 
