@@ -25,26 +25,28 @@
 
   <div class="shop">
     <h2>Warrior training grounds</h2>
-    <div class="shop-item" id="item0">Veteran Mentor +1 SPS REQ: <span id="price0">100 Solders</span> <button onclick="buyItem(0)">Buy</button></div>
-    <div class="shop-item" id="item1">Elite Battalion +10 SPS REQ: <span id="price1">500 Solders</span> <button onclick="buyItem(1)">Buy</button></div>
-    <div class="shop-item" id="item2">Tactical Regiment +50 SPS REQ: <span id="price2">2500 Solders</span> <button onclick="buyItem(2)">Buy</button></div>
+    <div class="shop-item" id="item0">Personal trainer +1 SPS REQ: <span id="price0">100 Solders</span> <button onclick="buyItem(0)">Buy</button></div>
+    <div class="shop-item" id="item1">Sniper training +10 SPS REQ: <span id="price1">500 Solders</span> <button onclick="buyItem(1)">Buy</button></div>
+    <div class="shop-item" id="item2">Boot camp +50 SPS REQ: <span id="price2">2500 Solders</span> <button onclick="buyItem(2)">Buy</button></div>
     <div class="shop-item" id="item3">War Academy +200 SPS REQ: <span id="price3">12000 Solders</span> <button onclick="buyItem(3)">Buy</button></div>
-    <div class="shop-item" id="item4">Fortress University +1000 SPS REQ: <span id="price4">60000 Solders</span> <button onclick="buyItem(4)">Buy</button></div>
-    <div class="shop-item" id="item5">Mechanized Drillbot +5000 SPS REQ: <span id="price5">300000 Solders</span> <button onclick="buyItem(5)">Buy</button></div>
-    <div class="shop-item" id="item6">Strategist Neural Chip +25000 SPS REQ: <span id="price6">1500000 Solders</span> <button onclick="buyItem(6)">Buy</button></div>
-    <div class="shop-item" id="item7">Spartan Conditioning +100000 SPS REQ: <span id="price7">7000000 Solders</span> <button onclick="buyItem(7)">Buy</button></div>
+    <div class="shop-item" id="item4">Error correctional facility +1000 SPS REQ: <span id="price4">60000 Solders</span> <button onclick="buyItem(4)">Buy</button></div>
+    <div class="shop-item" id="item5">Air Force training +5000 SPS REQ: <span id="price5">300000 Solders</span> <button onclick="buyItem(5)">Buy</button></div>
+    <div class="shop-item" id="item6">CIA war facilities +25000 SPS REQ: <span id="price6">1500000 Solders</span> <button onclick="buyItem(6)">Buy</button></div>
+    <div class="shop-item" id="item7">Black ops training. +100000 SPS REQ: <span id="price7">7000000 Solders</span> <button onclick="buyItem(7)">Buy</button></div>
   </div>
 <h5>Disclaimer : No solders were harmed in the making of this game, when you spend "solders", we actually train them to train more solders! Tldr: They get solder-teaching training!</h5>
   <!-- Mini-Game Overlay -->
   <div id="miniGameOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; text-align:center; padding-top:50px;">
     <div id="overlayContent" style="display:inline-block; background:#222; padding:20px; border-radius:12px; color:#FFDFA0;">
       <h2>CONQUER THE CASTLE!</h2>
-      <p>Hold SPACE to move the yellow box right, release to move left.<br>
-      Keep the box on the red line to fill the bar before time runs out.<br>
-      To win, fill the bar!<br>
-      To lose, don't fill the bar by the time runs out OR let the bar run empty.<br>
-      Failure will be met with HARSH consequences.</p>
-      <button id="startMiniBtn">Start</button>
+<p>
+  Hold <strong>SPACE</strong> to move the yellow box right. Release to move left.<br><br>
+  Stay on the red line to charge the bar before time runs out.<br><br>
+  <strong>Win:</strong> Fill the bar completely.<br>
+  <strong>Lose:</strong> Run out of time, or let the bar drain to zero.<br><br>
+  <span style="color: red; font-weight: bold;">Messed up? Face the consequences.</span>
+</p>
+      <button id="startMiniBtn">Start the siege?</button>
       <canvas id="gameCanvas" width="800" height="60"></canvas>
       <div id="fillBarContainer" style="width:80%; height:20px; background:#444; margin:10px auto; border-radius:10px; overflow:hidden;">
         <div id="fillBar" style="width:0%; height:100%; background:limegreen;"></div>
