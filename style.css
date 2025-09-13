@@ -4,13 +4,13 @@
   --bg-light: url('lightbg.jpg');
   --bg-dark: url('drkbg.png');
   
-  --text-light: #FF4C4C;   /* deep blood red */
+  --text-light: #1c0003;   /* deep blood red */
   --text-dark: #FF4C4C;    /* bright, harsh red */
   
-  --accent-light: #FF4C4C; /* intense dark red */
+  --accent-light: #1c0003; /* intense dark red */
   --accent-dark: #FF4C4C;  /* neon blood red */
   
-  --btn-bg-light: #FF1A1A; /* dark crimson */
+  --btn-bg-light: #1c0003; /* dark crimson */
   --btn-bg-dark: #FF1A1A;  /* harsh red */
   --btn-text-light: #fff;
   --btn-text-dark: #000;
@@ -179,4 +179,8 @@ body.dark-mode .shop-item {
   background: #FF0000;
   transform: scale(0.95);
   box-shadow: 0 0 25px rgba(255, 0, 0, 1);
+}
+
+* {
+  border-radius: 12px !important;
 }
