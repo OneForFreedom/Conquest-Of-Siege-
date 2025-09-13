@@ -33,7 +33,7 @@ body {
 }
 
 img.sword-img {
-  width: 120px;  /* smaller, more reasonable size */
+  width: 200px;  /* smaller, more reasonable size */
   height: auto;  /* keeps original proportions */
   margin: 20px 0;
   cursor: pointer;
