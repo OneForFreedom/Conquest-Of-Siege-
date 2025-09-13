@@ -6,7 +6,7 @@
   --bg-dark: url('drkbg.png');
   
   --text: #8B0000;       /* dark red text in light mode */
-  --text-dark: #FF0000;  /* bright red text in dark mode */
+  --text-dark: #FF0000;  /* bright red in dark mode */
   
   --accent: #8B0000;     /* dark red accent */
   --accent-dark: #FF0000;
@@ -18,7 +18,7 @@
   --btn-hover-dark: #FF4C4C;
   
   --shop-bg-light: #d3d3d3; /* light grey boxes in light mode */
-  --shop-bg-dark: #1e1e1e;  /* default dark boxes in dark mode */
+  --shop-bg-dark: #1e1e1e;  /* dark boxes in dark mode */
   --border-light: #888;
   --border-dark: #660000;
 }
@@ -28,30 +28,15 @@ body {
   text-align: center;
   padding: 40px;
   color: var(--text);
-  user-select: none;
-  position: relative;
-  z-index: 0;
-  overflow-x: hidden;
-  transition: color 0.5s ease;
-}
-
-/* Background fade using pseudo-element */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
   background: var(--bg-light) no-repeat center center;
   background-size: cover;
-  z-index: -1;
-  transition: background 0.5s ease;
+  user-select: none;
+  transition: background 0.5s, color 0.5s;
 }
 
+/* Dark mode */
 body.dark-mode {
   color: var(--text-dark);
-}
-
-body.dark-mode::before {
   background: var(--bg-dark) no-repeat center center;
 }
 
@@ -115,7 +100,7 @@ body.dark-mode button:hover {
 }
 
 body.dark-mode .shop-item {
-  background-color: var(--shop-bg-dark); /* dark mode default */
+  background-color: var(--shop-bg-dark); /* dark mode boxes */
   border: 2px solid var(--border-dark);
   color: var(--text-dark);
 }
