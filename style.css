@@ -3,14 +3,18 @@
 :root {
   --bg-light: url('lightbg.jpg');
   --bg-dark: url('drkbg.png');
+  
   --text-light: #2B0000;   /* deep blood red */
   --text-dark: #FF4C4C;    /* bright, harsh red */
+  
   --accent-light: #B30000; /* intense dark red */
   --accent-dark: #FF4C4C;  /* neon blood red */
+  
   --btn-bg-light: #8B0000; /* dark crimson */
   --btn-bg-dark: #FF1A1A;  /* harsh red */
   --btn-text-light: #fff;
   --btn-text-dark: #000;
+  
   --shop-bg-light: #1a1a1a;
   --shop-bg-dark: #000;
   --border-light: #660000;
@@ -88,22 +92,51 @@ body.dark-mode .shop-item {
   left:0;
   width:100%;
   height:100%;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.9);
   z-index:1000;
-  color:#FFDFA0;
+  color: #FF4C4C; /* harsh red text */
   text-align:center;
   padding-top:50px;
 }
 
 #overlayContent {
   display:inline-block;
-  background:#333;
+  background:#111;
   padding:20px;
-  border-radius:12px;
+  border-radius:6px;
+  border:2px solid #FF1A1A;
 }
 
-#gameCanvas { background:#222; border:2px solid #fff; display:block; margin:20px auto; }
-#fillBarContainer { width:80%; height:20px; background:#444; margin:10px auto; border-radius:10px; overflow:hidden; }
-#fillBar { width:0%; height:100%; background:limegreen; }
-#timer { font-size:18px; margin-top:10px; }
-#messageMini { margin-top:10px; font-size:18px; }
+#gameCanvas { 
+  background:#111; 
+  border:2px solid #FF1A1A; 
+  display:block; 
+  margin:20px auto; 
+}
+
+#fillBarContainer { 
+  width:80%; 
+  height:20px; 
+  background:#330000; 
+  margin:10px auto; 
+  border-radius:0; 
+  overflow:hidden; 
+}
+
+#fillBar { 
+  width:0%; 
+  height:100%; 
+  background:#FF0000; /* blood red fill */
+}
+
+#timer { 
+  font-size:18px; 
+  margin-top:10px; 
+  color: #FF3B3B; 
+}
+
+#messageMini { 
+  margin-top:10px; 
+  font-size:18px; 
+  color: #B30000; 
+}
