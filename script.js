@@ -75,7 +75,7 @@ function performRebirth() {
   }
 }
 
-// Click soldiers
+// Click sword
 document.getElementById("sword").addEventListener("click", () => {
   const spc = Math.round(Math.pow(gameState.rebirths + 1, 2));
   gameState.count += spc;
@@ -96,9 +96,10 @@ function buyItem(index) {
   }
 }
 
+// ✅ Auto-updating prices with "swords"
 function updatePrices() {
   gameState.itemPrices.forEach((price, i) => {
-    document.getElementById("price" + i).textContent = Math.round(price).toLocaleString();
+    document.getElementById("price" + i).textContent = Math.round(price).toLocaleString() + " swords";
   });
 }
 
