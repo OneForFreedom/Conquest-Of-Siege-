@@ -12,29 +12,28 @@
     </div>
 
     <h1>Conquest of Siege</h1>
-    <h3>Soldiers in fleet: <span id="count"></span></h3>
+    <h3>Soldiers in fleet: <span id="count">0</span></h3>
     <h3>Castles conquered: <span id="rebirths">0</span></h3>
     <h3>Soldiers trained per second: <span id="tps">0</span></h3>
     <h3>Soldiers trained per click: <span id="tpc">1</span></h3>
 
-    <img id="sword" src="sword.png" class="sword-img" alt="Well.. an epic sword was supposed to be here, try reloading!" />
+    <img id="sword" src="sword.png" class="sword-img" alt="Epic sword" />
 
     <div id="message"></div>
-    <button id="rebirthBtn" onclick="performRebirth()" style="display:none;">Head to war? ⚔️</button>
+    <button id="rebirthBtn" style="display:none;">Head to war? ⚔</button>
 
-<div class="shop">
-  <h2>Warrior training grounds</h2>
-  <div class="shop-item" id="item0">Veteran Mentor +1 SPS REQ: <span id="price0">100 swords</span> <button onclick="buyItem(0)">Buy</button></div>
-  <div class="shop-item" id="item1">Elite Battalion +10 SPS REQ: <span id="price1">500 swords</span> <button onclick="buyItem(1)">Buy</button></div>
-  <div class="shop-item" id="item2">Tactical Regiment +50 SPS REQ: <span id="price2">2500 swords</span> <button onclick="buyItem(2)">Buy</button></div>
-  <div class="shop-item" id="item3">War Academy +200 SPS REQ: <span id="price3">12000 swords</span> <button onclick="buyItem(3)">Buy</button></div>
-  <div class="shop-item" id="item4">Fortress University +1000 SPS REQ: <span id="price4">60000 swords</span> <button onclick="buyItem(4)">Buy</button></div>
-  <div class="shop-item" id="item5">Mechanized Drillbot +5000 SPS REQ: <span id="price5">300000 swords</span> <button onclick="buyItem(5)">Buy</button></div>
-  <div class="shop-item" id="item6">Strategist Neural Chip +25000 SPS REQ: <span id="price6">1500000 swords</span> <button onclick="buyItem(6)">Buy</button></div>
-  <div class="shop-item" id="item7">Spartan Conditioning +100000 SPS REQ: <span id="price7">7000000 swords</span> <button onclick="buyItem(7)">Buy</button></div>
-</div>
+    <div class="shop">
+        <h2>Warrior training grounds</h2>
+        <div class="shop-item" id="item0">Veteran Mentor +1 SPS REQ: <span id="price0">100 swords</span> <button onclick="buyItem(0)">Buy</button></div>
+        <div class="shop-item" id="item1">Elite Battalion +10 SPS REQ: <span id="price1">500 swords</span> <button onclick="buyItem(1)">Buy</button></div>
+        <div class="shop-item" id="item2">Tactical Regiment +50 SPS REQ: <span id="price2">2500 swords</span> <button onclick="buyItem(2)">Buy</button></div>
+        <div class="shop-item" id="item3">War Academy +200 SPS REQ: <span id="price3">12000 swords</span> <button onclick="buyItem(3)">Buy</button></div>
+        <div class="shop-item" id="item4">Fortress University +1000 SPS REQ: <span id="price4">60000 swords</span> <button onclick="buyItem(4)">Buy</button></div>
+        <div class="shop-item" id="item5">Mechanized Drillbot +5000 SPS REQ: <span id="price5">300000 swords</span> <button onclick="buyItem(5)">Buy</button></div>
+        <div class="shop-item" id="item6">Strategist Neural Chip +25000 SPS REQ: <span id="price6">1500000 swords</span> <button onclick="buyItem(6)">Buy</button></div>
+        <div class="shop-item" id="item7">Spartan Conditioning +100000 SPS REQ: <span id="price7">7000000 swords</span> <button onclick="buyItem(7)">Buy</button></div>
+    </div>
 
-                                                                                                                          
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
