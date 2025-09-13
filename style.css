@@ -1,29 +1,28 @@
-/* Import cold & harsh font */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 :root {
   --bg: url('lightbg.jpg');
-  --bg-start: #ffe4ec;
-  --bg-mid: #ffc1d9;
-  --bg-end: #ff9bb6;
-  --text: #8B0000;       
-  --accent: #ff77a9;      
-  --btn-bg: #ff77a9;      
+  --bg-start: #8B0000; /* dark blood red gradient start */
+  --bg-mid: #A80000;   /* dark blood red mid */
+  --bg-end: #C70000;   /* dark blood red end */
+  --text: #8B0000;     /* dark red text in light mode */
+  --accent: #C70000;   /* blood red for headings, buttons accent */
+  --btn-bg: #C70000;   
   --btn-text: #ffffff;    
-  --btn-hover: #e65c91;   
-  --shop-bg: #f9f0f4;     
-  --border: #d8b6c4;  
+  --btn-hover: #FF0000;   /* bright red hover */
+  --shop-bg: #4A0000;     
+  --border: #5A0000;  
 }
 
 .dark-mode {
   --bg: url('drkbg.png');
-  --text: #FF0000;        
-  --accent: #ff80ab;
-  --btn-bg: #ff4081;
+  --text: #FF0000;        /* bright red text in dark mode */
+  --accent: #FF0000;      /* blood red accent in dark mode */
+  --btn-bg: #FF0000;      
   --btn-text: #ffffff;
-  --btn-hover: #e91e63;
+  --btn-hover: #FF4C4C;   /* lighter blood red hover */
   --shop-bg: #1e1e1e;
-  --border: #444;
+  --border: #660000;      /* dark blood red border */
 }
 
 body {
@@ -32,7 +31,7 @@ body {
   padding: 40px;
   background: var(--bg) no-repeat center center;
   background-size: cover;
-  color: var(--text);  /* Uses the red variable */
+  color: var(--text);
   user-select: none;
   transition: background 0.3s, color 0.3s;
 }
