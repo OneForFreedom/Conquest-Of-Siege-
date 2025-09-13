@@ -68,8 +68,6 @@ img.sword-img:active {
 button {
   padding: 14px 30px;
   font-size: 20px;
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -96,18 +94,6 @@ body.dark-mode .top-bar button:hover {
   background-color: #C7E0FF; /* Slightly brighter hover dark mode */
 }
 
-button:hover {
-  background-color: var(--btn-hover);
-}
-
-body.dark-mode button {
-  background-color: var(--btn-bg-dark);
-}
-
-body.dark-mode button:hover {
-  background-color: var(--btn-hover-dark);
-}
-
 /* Shop items */
 .shop {
   margin-top: 40px;
@@ -128,6 +114,21 @@ body.dark-mode button:hover {
 
 .shop-item button {
   margin-left: 15px;
+  background-color: #FFDFA0; /* Sandy yellow */
+  color: #000;
+}
+
+body.dark-mode .shop-item button {
+  background-color: #AFCFFF; /* Moonlight blue */
+  color: #000022;
+}
+
+.shop-item button:hover {
+  background-color: #FFEFA0;
+}
+
+body.dark-mode .shop-item button:hover {
+  background-color: #C7E0FF;
 }
 
 /* Top bar */
