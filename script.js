@@ -1,17 +1,15 @@
+// THEME
 const body = document.body;
-
-// Theme toggle
 function toggleTheme() {
   body.classList.toggle("dark-mode");
   localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark" : "light");
 }
-
 function loadTheme() {
   const saved = localStorage.getItem("theme");
   if (saved === "dark") body.classList.add("dark-mode");
 }
 
-// Siege items
+// GAME STATE
 const items = [
   { cost: 100, rate: 1 },
   { cost: 500, rate: 10 },
@@ -24,13 +22,13 @@ const items = [
 ];
 
 let gameState = {
-  count: 0,           // soldiers in fleet
-  rebirths: 0,        // castles conquered
+  count: 0,            // soldiers in fleet
+  rebirths: 0,         // castles conquered
   soldiersPerSecond: 0,
   itemPrices: items.map(i => i.cost)
 };
 
-// DOM elements
+// DOM
 const countDisplay = document.getElementById("count");
 const rebirthDisplay = document.getElementById("rebirths");
 const mpsDisplay = document.getElementById("tps");
@@ -38,33 +36,31 @@ const mpcDisplay = document.getElementById("tpc");
 const messageBox = document.getElementById("message");
 const rebirthButton = document.getElementById("rebirthBtn");
 
-// Threshold for "rebirth" = head to war
-function rebirthThreshold(level) {
-  return 1000 * Math.pow(10, level);
-}
+// MINI-GAME DOM
+const overlay = document.getElementById("miniGameOverlay");
+const startBtn = document.getElementById("startMiniBtn");
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+const fillBarEl = document.getElementById("fillBar");
+const timerDisplay = document.getElementById("timer");
+const messageMini = document.getElementById("messageMini");
 
-// Update display
+// UPDATE GAME DISPLAY
 function updateGame() {
   countDisplay.textContent = Math.round(gameState.count).toLocaleString();
-  rebirthDisplay.textContent = Math.round(gameState.rebirths);
+  rebirthDisplay.textContent = gameState.rebirths;
   mpsDisplay.textContent = Math.round(gameState.soldiersPerSecond).toLocaleString();
   mpcDisplay.textContent = Math.round(Math.pow(gameState.rebirths + 1, 2));
   checkRebirthUnlock();
 }
 
-// Show "Head to War" button only when threshold met
+// CHECK IF "HEAD TO WAR" SHOULD SHOW
+function rebirthThreshold(level) { return 1000 * Math.pow(10, level); }
 function checkRebirthUnlock() {
   rebirthButton.style.display = (gameState.count >= rebirthThreshold(gameState.rebirths)) ? "inline-block" : "none";
 }
 
-// Click sword
-document.getElementById("sword").addEventListener("click", () => {
-  const spc = Math.round(Math.pow(gameState.rebirths + 1, 2));
-  gameState.count += spc;
-  updateGame();
-});
-
-// Buy items
+// BUY ITEMS
 function buyItem(index) {
   if (gameState.count >= gameState.itemPrices[index]) {
     gameState.count -= gameState.itemPrices[index];
@@ -77,109 +73,149 @@ function buyItem(index) {
     messageBox.textContent = "Not enough soldiers. Keep training!";
   }
 }
-
-// ✅ Auto-updating prices with "swords"
 function updatePrices() {
   gameState.itemPrices.forEach((price, i) => {
     document.getElementById("price" + i).textContent = Math.round(price).toLocaleString() + " swords";
   });
 }
 
-// Passive gain
-function passiveGain() {
-  gameState.count += gameState.soldiersPerSecond;
+// CLICK SWORD
+document.getElementById("sword").addEventListener("click", () => {
+  gameState.count += Math.round(Math.pow(gameState.rebirths + 1, 2));
   updateGame();
-}
+});
 
-// Save / load
-function saveGame() {
-  localStorage.setItem("siegeSave", JSON.stringify(gameState));
-}
+// PASSIVE GAIN
+setInterval(() => { gameState.count += gameState.soldiersPerSecond; updateGame(); }, 1000);
 
+// SAVE / LOAD
+function saveGame() { localStorage.setItem("siegeSave", JSON.stringify(gameState)); }
 function loadGame() {
   const save = JSON.parse(localStorage.getItem("siegeSave"));
-  if (save) {
-    gameState = Object.assign(gameState, save);
+  if (save) gameState = Object.assign(gameState, save);
+  updatePrices();
+  updateGame();
+}
+setInterval(saveGame, 5000);
+window.addEventListener("beforeunload", saveGame);
+
+// MINI-GAME LOGIC
+let mini = {
+  player: { x: 400, y:0, width:30, height:canvas.height, speed:0, maxSpeed:6, momentum:0.95 },
+  line: { x:200, y:canvas.height/2-5, width:100, height:10, speed:0, direction:1, pauseTimer:0 },
+  fill:50, duration:30, startTime:0, running:false, spaceHeld:false
+};
+
+// PLAYER CONTROLS
+document.addEventListener("keydown", e => { if(e.code==="Space") mini.spaceHeld=true; });
+document.addEventListener("keyup", e => { if(e.code==="Space") mini.spaceHeld=false; });
+
+// START OVERLAY
+function startMiniGameOverlay() {
+  overlay.style.display = "block";
+  startMiniBtn.style.display = "inline-block";
+}
+startBtn.addEventListener("click", () => { startMiniGame(); });
+
+// START MINI GAME
+function startMiniGame() {
+  mini.fill = 50;
+  mini.startTime = Date.now();
+  mini.running = true;
+  mini.spaceHeld = false;
+  messageMini.textContent = "";
+  startBtn.style.display = "none";
+  gameLoopMini();
+}
+
+// UPDATE LINE
+function updateLineMini() {
+  if(mini.line.pauseTimer>0){ mini.line.pauseTimer--; return; }
+  if(Math.random()<0.01){ mini.line.pauseTimer=Math.floor(Math.random()*30); return; }
+  if(Math.random()<0.02) mini.line.speed=Math.random()*3+1;
+  mini.line.x += mini.line.direction * mini.line.speed;
+  if(mini.line.x < 0){ mini.line.x=0; mini.line.direction=1; mini.line.speed=Math.random()*3+1; }
+  if(mini.line.x+mini.line.width > canvas.width){ mini.line.x=canvas.width-mini.line.width; mini.line.direction=-1; mini.line.speed=Math.random()*3+1; }
+}
+
+// UPDATE PLAYER
+function updatePlayerMini() {
+  mini.player.speed += mini.spaceHeld ? 0.5 : -0.3;
+  if(mini.player.speed>mini.player.maxSpeed) mini.player.speed=mini.player.maxSpeed;
+  if(mini.player.speed<-mini.player.maxSpeed) mini.player.speed=-mini.player.maxSpeed;
+  mini.player.x += mini.player.speed * mini.player.momentum;
+  if(mini.player.x<0) mini.player.x=0;
+  if(mini.player.x+mini.player.width>canvas.width) mini.player.x=canvas.width-mini.player.width;
+  mini.player.speed *= 0.95;
+}
+
+// DRAW MINI GAME
+function drawMini() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='red';
+  ctx.fillRect(mini.line.x, mini.line.y, mini.line.width, mini.line.height);
+  ctx.fillStyle='rgba(255,255,0,0.5)';
+  ctx.fillRect(mini.player.x, mini.player.y, mini.player.width, mini.player.height);
+  ctx.strokeStyle='yellow';
+  ctx.strokeRect(mini.player.x, mini.player.y, mini.player.width, mini.player.height);
+}
+
+// UPDATE FILL
+function updateFillMini() {
+  const overlap = Math.max(0, Math.min(mini.player.x+mini.player.width, mini.line.x+mini.line.width)-Math.max(mini.player.x, mini.line.x));
+  mini.fill += overlap>0 ? 0.18 : -0.2;  // Slower fill
+  mini.fill = Math.max(0, Math.min(100, mini.fill));
+  fillBarEl.style.width = mini.fill+'%';
+  if(mini.fill>=100) endMini(true);
+  if(mini.fill<=0) endMini(false);
+}
+
+// UPDATE TIMER
+function updateTimerMini() {
+  const elapsed = Math.floor((Date.now()-mini.startTime)/1000);
+  const timeLeft = Math.max(0, mini.duration-elapsed);
+  timerDisplay.textContent = `Time left: ${timeLeft}s`;
+  if(timeLeft<=0) endMini(false);
+}
+
+// END MINI GAME
+function endMini(win) {
+  mini.running=false;
+  overlay.style.display="none";
+  startBtn.style.display="inline-block";
+  if(win){
+    messageBox.textContent = "🏆 Mini-game success! Multiplier applied!";
+    performRebirth(true);
+  } else {
+    messageBox.textContent = "❌ Mini-game failed. Soldiers retreat!";
+    // reset soldiers, SPS, prices like normal rebirth without bonuses
+    gameState.count = 0;
+    gameState.soldiersPerSecond = 0;
+    gameState.itemPrices = items.map(i => i.cost);
+    updatePrices();
   }
+}
+
+// MINI GAME LOOP
+function gameLoopMini() {
+  if(!mini.running) return;
+  updateLineMini();
+  updatePlayerMini();
+  drawMini();
+  updateFillMini();
+  updateTimerMini();
+  requestAnimationFrame(gameLoopMini);
+}
+
+// REBIRTH FUNCTION
+function performRebirth(multiplier=false) {
+  gameState.count = 0;
+  gameState.rebirths++;
+  gameState.soldiersPerSecond = multiplier ? gameState.soldiersPerSecond : 0;
+  gameState.itemPrices = items.map(i => i.cost);
   updatePrices();
   updateGame();
 }
 
-// Reaction Test Logic
-rebirthButton.addEventListener("click", startReactionTest);
-
-const reactionTest = document.getElementById("reactionTest");
-const reactionMessage = document.getElementById("reactionMessage");
-const reactionScreen = document.getElementById("reactionScreen");
-
-function startReactionTest() {
-  rebirthButton.style.display = "none";
-  reactionTest.style.display = "block";
-  reactionMessage.textContent = "Prepare for battle…";
-
-  const delay = Math.random() * 2000 + 1000; // 1-3s
-
-  setTimeout(() => {
-    reactionMessage.textContent = "⚡ Strike Now!";
-    reactionScreen.style.background = "green";
-    const startTime = Date.now();
-
-    function handleClick() {
-      const reactionTime = Date.now() - startTime;
-      reactionScreen.removeEventListener("click", handleClick);
-
-      if (reactionTime <= 500) {
-        reactionMessage.textContent = `Perfect strike! ${reactionTime}ms ✅ Castle conquered.`;
-        performRebirth(true);
-      } else {
-        reactionMessage.textContent = `Too slow! ${reactionTime}ms ❌ Soldiers retreat.`;
-        performRebirth(false);
-      }
-
-      reactionScreen.style.background = "red";
-      rebirthButton.style.display = "inline-block";
-    }
-
-    reactionScreen.addEventListener("click", handleClick);
-  }, delay);
-}
-
-// Rebirth logic
-function performRebirth(success = true) {
-  if (gameState.count >= rebirthThreshold(gameState.rebirths)) {
-    if (success) {
-      gameState.rebirths++;
-      gameState.count = 0;
-      gameState.soldiersPerSecond = 0;
-      gameState.itemPrices = items.map(item => item.cost);
-      updatePrices();
-      updateGame();
-      messageBox.textContent = `🏰 Castle conquered! Soldiers per click is now ${Math.round(Math.pow(gameState.rebirths + 1, 2))}.`;
-    } else {
-      // Failed mini-game: normal rebirth, but no bonus
-      gameState.count = 0;
-      gameState.soldiersPerSecond = 0;
-      gameState.itemPrices = items.map(item => item.cost);
-      updatePrices();
-      updateGame();
-      messageBox.textContent = `❌ Mini-game failed. Normal rebirth, no bonus gained.`;
-    }
-  }
-}
-
-function endMiniManually() {
-  reactionTest.style.display = "none";
-  rebirthButton.style.display = "inline-block";
-  messageBox.textContent = "Mini-game cancelled.";
-}
-
-// Intervals
-setInterval(passiveGain, 1000);
-setInterval(saveGame, 5000);
-window.addEventListener("beforeunload", saveGame);
-
-// On load
-window.onload = () => {
-  loadGame();
-  loadTheme();
-};
+// INIT
+window.onload = () => { loadGame(); loadTheme(); updateGame(); };
