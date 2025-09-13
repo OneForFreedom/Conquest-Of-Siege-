@@ -87,25 +87,25 @@ document.getElementById("sword").addEventListener("click", () => {
 
 // AUTO INCREMENT SMOOTH
 function incrementSmoothly(amountPerSecond) {
-    if (amountPerSecond <= 0) return;
+  if (amountPerSecond <= 0) return;
 
-    let added = 0;
-    const intervalTime = 1000 / amountPerSecond; // milliseconds per +1
+  let added = 0;
+  const intervalTime = 1000 / amountPerSecond;
 
-    const interval = setInterval(() => {
-        if (added >= amountPerSecond) {
-            clearInterval(interval);
-            return;
-        }
-        gameState.count++;
-        added++;
-        updateGame();
-    }, intervalTime);
+  const interval = setInterval(() => {
+    if (added >= amountPerSecond) {
+      clearInterval(interval);
+      return;
+    }
+    gameState.count++;
+    added++;
+    updateGame();
+  }, intervalTime);
 }
 
 // Replace old auto increment with smooth version
 setInterval(() => {
-    incrementSmoothly(gameState.soldiersPerSecond);
+  incrementSmoothly(gameState.soldiersPerSecond);
 }, 1000);
 
 // SAVE/LOAD
@@ -194,30 +194,28 @@ function updateTimerMini() {
   if(timeLeft<=0) endMini(false);
 }
 
+// END MINI-GAME
 function endMini(win) {
   mini.running=false;
   overlay.style.display="none";
   startBtn.style.display="inline-block";
+
   if(win){
     messageBox.textContent = "🏆 Mini-game success! Multiplier applied!";
-    performRebirth(true);
+    performRebirth(true);   // normal rebirth
   } else {
-    messageBox.textContent = "❌ Mini-game failed. Soldiers retreat!";
-    gameState.count = 0;
-    gameState.soldiersPerSecond = 0;
-    gameState.itemPrices = items.map(i => i.cost);
-    updatePrices();
+    messageBox.textContent = "❌ Mini-game failed. Punishment reset!";
+    punishmentRebirth();    // reset, no rebirth increase
   }
 }
 
-function gameLoopMini() {
-  if(!mini.running) return;
-  updateLineMini();
-  updatePlayerMini();
-  drawMini();
-  updateFillMini();
-  updateTimerMini();
-  requestAnimationFrame(gameLoopMini);
+// PUNISHMENT REBIRTH
+function punishmentRebirth() {
+  gameState.count = 0;
+  gameState.soldiersPerSecond = 0;
+  gameState.itemPrices = items.map(i => i.cost);
+  updatePrices();
+  updateGame();
 }
 
 // REBIRTH
