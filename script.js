@@ -22,8 +22,8 @@ const items = [
 ];
 
 let gameState = {
-  count: 0,            // soldiers in fleet
-  rebirths: 0,         // castles conquered
+  count: 0,      
+  rebirths: 0,       
   soldiersPerSecond: 0,
   itemPrices: items.map(i => i.cost)
 };
@@ -45,7 +45,7 @@ const fillBarEl = document.getElementById("fillBar");
 const timerDisplay = document.getElementById("timer");
 const messageMini = document.getElementById("messageMini");
 
-// UPDATE GAME DISPLAY
+
 function updateGame() {
   countDisplay.textContent = Math.round(gameState.count).toLocaleString();
   rebirthDisplay.textContent = gameState.rebirths;
@@ -54,7 +54,7 @@ function updateGame() {
   checkRebirthUnlock();
 }
 
-// CHECK IF "HEAD TO WAR" SHOULD SHOW
+
 function rebirthThreshold(level) { return 1000 * Math.pow(10, level); }
 function checkRebirthUnlock() {
   rebirthButton.style.display = (gameState.count >= rebirthThreshold(gameState.rebirths)) ? "inline-block" : "none";
@@ -79,16 +79,16 @@ function updatePrices() {
   });
 }
 
-// CLICK SWORD
+
 document.getElementById("sword").addEventListener("click", () => {
   gameState.count += Math.round(Math.pow(gameState.rebirths + 1, 2));
   updateGame();
 });
 
-// PASSIVE GAIN
+
 setInterval(() => { gameState.count += gameState.soldiersPerSecond; updateGame(); }, 1000);
 
-// SAVE / LOAD
+
 function saveGame() { localStorage.setItem("siegeSave", JSON.stringify(gameState)); }
 function loadGame() {
   const save = JSON.parse(localStorage.getItem("siegeSave"));
@@ -99,25 +99,25 @@ function loadGame() {
 setInterval(saveGame, 5000);
 window.addEventListener("beforeunload", saveGame);
 
-// MINI-GAME LOGIC
+
 let mini = {
   player: { x: 400, y:0, width:30, height:canvas.height, speed:0, maxSpeed:6, momentum:0.95 },
   line: { x:200, y:canvas.height/2-5, width:100, height:10, speed:0, direction:1, pauseTimer:0 },
   fill:50, duration:30, startTime:0, running:false, spaceHeld:false
 };
 
-// PLAYER CONTROLS
+
 document.addEventListener("keydown", e => { if(e.code==="Space") mini.spaceHeld=true; });
 document.addEventListener("keyup", e => { if(e.code==="Space") mini.spaceHeld=false; });
 
-// START OVERLAY
+
 function startMiniGameOverlay() {
   overlay.style.display = "block";
   startMiniBtn.style.display = "inline-block";
 }
 startBtn.addEventListener("click", () => { startMiniGame(); });
 
-// START MINI GAME
+
 function startMiniGame() {
   mini.fill = 50;
   mini.startTime = Date.now();
@@ -128,7 +128,7 @@ function startMiniGame() {
   gameLoopMini();
 }
 
-// UPDATE LINE
+
 function updateLineMini() {
   if(mini.line.pauseTimer>0){ mini.line.pauseTimer--; return; }
   if(Math.random()<0.01){ mini.line.pauseTimer=Math.floor(Math.random()*30); return; }
@@ -138,7 +138,7 @@ function updateLineMini() {
   if(mini.line.x+mini.line.width > canvas.width){ mini.line.x=canvas.width-mini.line.width; mini.line.direction=-1; mini.line.speed=Math.random()*3+1; }
 }
 
-// UPDATE PLAYER
+
 function updatePlayerMini() {
   mini.player.speed += mini.spaceHeld ? 0.5 : -0.3;
   if(mini.player.speed>mini.player.maxSpeed) mini.player.speed=mini.player.maxSpeed;
@@ -149,7 +149,7 @@ function updatePlayerMini() {
   mini.player.speed *= 0.95;
 }
 
-// DRAW MINI GAME
+
 function drawMini() {
   ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.fillStyle='red';
@@ -160,7 +160,7 @@ function drawMini() {
   ctx.strokeRect(mini.player.x, mini.player.y, mini.player.width, mini.player.height);
 }
 
-// UPDATE FILL
+
 function updateFillMini() {
   const overlap = Math.max(0, Math.min(mini.player.x+mini.player.width, mini.line.x+mini.line.width)-Math.max(mini.player.x, mini.line.x));
   mini.fill += overlap>0 ? 0.18 : -0.2;  // Slower fill
@@ -170,7 +170,7 @@ function updateFillMini() {
   if(mini.fill<=0) endMini(false);
 }
 
-// UPDATE TIMER
+
 function updateTimerMini() {
   const elapsed = Math.floor((Date.now()-mini.startTime)/1000);
   const timeLeft = Math.max(0, mini.duration-elapsed);
@@ -178,7 +178,7 @@ function updateTimerMini() {
   if(timeLeft<=0) endMini(false);
 }
 
-// END MINI GAME
+
 function endMini(win) {
   mini.running=false;
   overlay.style.display="none";
@@ -196,7 +196,7 @@ function endMini(win) {
   }
 }
 
-// MINI GAME LOOP
+
 function gameLoopMini() {
   if(!mini.running) return;
   updateLineMini();
@@ -207,7 +207,7 @@ function gameLoopMini() {
   requestAnimationFrame(gameLoopMini);
 }
 
-// REBIRTH FUNCTION
+
 function performRebirth(multiplier=false) {
   gameState.count = 0;
   gameState.rebirths++;
@@ -217,5 +217,5 @@ function performRebirth(multiplier=false) {
   updateGame();
 }
 
-// INIT
+
 window.onload = () => { loadGame(); loadTheme(); updateGame(); };
