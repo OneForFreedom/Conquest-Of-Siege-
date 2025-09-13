@@ -6,7 +6,7 @@
   --bg-start: #ffe4ec;
   --bg-mid: #ffc1d9;
   --bg-end: #ff9bb6;
-  --text: #000000;        
+  --text: #8B0000;       
   --accent: #ff77a9;      
   --btn-bg: #ff77a9;      
   --btn-text: #ffffff;    
@@ -17,7 +17,7 @@
 
 .dark-mode {
   --bg: url('drkbg.png');
-  --text: #f0f0f0;
+  --text: #FF0000;        
   --accent: #ff80ab;
   --btn-bg: #ff4081;
   --btn-text: #ffffff;
@@ -32,7 +32,7 @@ body {
   padding: 40px;
   background: var(--bg) no-repeat center center;
   background-size: cover;
-  color: var(--text);
+  color: var(--text);  /* Uses the red variable */
   user-select: none;
   transition: background 0.3s, color 0.3s;
 }
