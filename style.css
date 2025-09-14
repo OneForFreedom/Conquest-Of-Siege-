@@ -4,14 +4,14 @@
   --bg-light: url('lightbg.jpg');
   --bg-dark: url('drkbg.png');
   
-  --text-light: #1c0003;   /* deep blood red */
-  --text-dark: #FF4C4C;    /* bright, harsh red */
+  --text-light: #1c0003;  
+  --text-dark: #FF4C4C;   
   
-  --accent-light: #1c0003; /* intense dark red */
-  --accent-dark: #FF4C4C;  /* neon blood red */
+  --accent-light: #1c0003;
+  --accent-dark: #FF4C4C;  
   
-  --btn-bg-light: #1c0003; /* dark crimson */
-  --btn-bg-dark: #FF1A1A;  /* harsh red */
+  --btn-bg-light: #1c0003; 
+  --btn-bg-dark: #FF1A1A;  
   --btn-text-light: #fff;
   --btn-text-dark: #000;
   
@@ -50,9 +50,8 @@ body.dark-mode {
   color: var(--text-dark);
 }
 
-/* Headers */
 h1, h2, h3 {
-  color: #1c0003;  /* dark red in light mode */
+  color: #1c0003;  
   text-transform: uppercase;
 }
 
@@ -62,14 +61,14 @@ body.dark-mode h3 {
   color: var(--accent-dark); 
 }
 
-/* Buttons */
+
 button {
   padding: 14px 30px;
   font-size: 20px;
   cursor: pointer;
   margin-top: 25px;
   font-weight: bold;
-  border-radius: 12px;  /* match global rounding */
+  border-radius: 12px;  
 }
 
 .top-bar button {
@@ -81,7 +80,7 @@ body.dark-mode .top-bar button {
   color: var(--btn-text-dark);
 }
 
-/* Shop items */
+
 .shop-item {
   margin: 10px auto;
   padding: 15px;
@@ -99,7 +98,7 @@ body.dark-mode .shop-item {
   color: var(--text-dark);
 }
 
-/* Mini-game overlay */
+
 #miniGameOverlay {
   display:none;
   position:fixed;
@@ -158,7 +157,7 @@ body.dark-mode .shop-item {
   color: #B30000; 
 }
 
-/* Reset All button */
+
 #resetBtn {
   background: #8B0000;
   color: #fff;
@@ -187,7 +186,7 @@ body.dark-mode .shop-item {
   box-shadow: 0 0 25px rgba(255, 0, 0, 1);
 }
 
-/* Top-right button (theme toggle) */
+
 .topright {
   position: fixed;
   top: 20px;
@@ -212,7 +211,7 @@ body.dark-mode .shop-item {
   transform: scale(1.05);
 }
 
-/* Top-left button (reset all) */
+
 .topleft {
   position: fixed;
   top: 20px;
@@ -237,7 +236,7 @@ body.dark-mode .shop-item {
   transform: scale(1.05);
 }
 
-/* Make everything else rounded */
+
 * {
   border-radius: 12px !important;
 }
