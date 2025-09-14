@@ -78,13 +78,13 @@ function updatePrices() {
   });
 }
 
-// CLICK SWORD
+
 document.getElementById("sword").addEventListener("click", () => {
   gameState.count += Math.round(Math.pow(gameState.rebirths + 1, 2));
   updateGame();
 });
 
-// AUTO INCREMENT SMOOTH
+
 function incrementSmoothly(amountPerSecond) {
     if (amountPerSecond <= 0) return;
 
@@ -201,9 +201,9 @@ function endMini(win) {
     messageBox.textContent = "🏆 Your siege was sucessful! Enjoy the bounties!";
     performRebirth(true); 
   } else {
-    messageBox.textContent = "❌ Your siege failed. All your solders are held permanently captive. REBUILD YOUR ARMY!";
+    messageBox.textContent = "❌ Your siege failed. All your solders are now held permanently captive. REBUILD YOUR ARMY!";
     
-    // Punishment reset
+
     gameState.count = 0;                   
     gameState.soldiersPerSecond = 0;      
     gameState.itemPrices = items.map(i => i.cost); 
