@@ -11,4 +11,4 @@ https://oneforfreedom.github.io/Conquest-Of-Siege-/
 
 Good luck, your solders are counting on you.
 
-![Logo]("Your20%paragraph20%text.png")
+![Logo](Your%20paragraph%20text.png)
