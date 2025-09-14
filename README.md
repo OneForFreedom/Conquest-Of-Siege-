@@ -1,9 +1,9 @@
 # Conquest Of Siege 
-This is the conquest of siege. take over the revolution and conquer the army!
+This is the conquest of siege. take over the revolution and conquer the enemy castles!
 
 Conquer every castle as you go along, and get awesome bounties, 
 
-Fail the conquer and lose your solders.
+Fail the siege and lose your solders.
 
 Rebuild your army again and again and become the top warrior!
 
