@@ -7,7 +7,7 @@ Fail the conquer and lose your solders.
 
 Rebuild your army again and again and become the top warrior!
 
-https://oneforfreedom.github.io/Conquest-Of-Siege-/
+[>>The Battlefield<<](https://oneforfreedom.github.io/Conquest-Of-Siege-/)
 
 Good luck, your solders are counting on you.
 
