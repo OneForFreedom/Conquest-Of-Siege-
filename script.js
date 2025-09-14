@@ -75,7 +75,7 @@ function buyItem(index) {
 
 function updatePrices() {
   gameState.itemPrices.forEach((price, i) => {
-    document.getElementById("price" + i).textContent = Math.round(price).toLocaleString() + " swords";
+    document.getElementById("price" + i).textContent = Math.round(price).toLocaleString() + " Soldiers";
   });
 }
 
