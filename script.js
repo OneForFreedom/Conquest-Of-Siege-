@@ -1,4 +1,3 @@
-// THEME
 const body = document.body;
 function toggleTheme() {
   body.classList.toggle("dark-mode");
@@ -9,7 +8,7 @@ function loadTheme() {
   if (saved === "dark") body.classList.add("dark-mode");
 }
 
-// GAME STATE
+
 const items = [
   { cost: 100, rate: 1 },
   { cost: 500, rate: 10 },
@@ -28,7 +27,7 @@ let gameState = {
   itemPrices: items.map(i => i.cost)
 };
 
-// DOM
+
 const countDisplay = document.getElementById("count");
 const rebirthDisplay = document.getElementById("rebirths");
 const mpsDisplay = document.getElementById("tps");
@@ -36,7 +35,7 @@ const mpcDisplay = document.getElementById("tpc");
 const messageBox = document.getElementById("message");
 const rebirthButton = document.getElementById("rebirthBtn");
 
-// MINI-GAME DOM
+
 const overlay = document.getElementById("miniGameOverlay");
 const startBtn = document.getElementById("startMiniBtn");
 const canvas = document.getElementById("gameCanvas");
@@ -45,7 +44,7 @@ const fillBarEl = document.getElementById("fillBar");
 const timerDisplay = document.getElementById("timer");
 const messageMini = document.getElementById("messageMini");
 
-// UPDATE GAME
+
 function updateGame() {
   countDisplay.textContent = Math.round(gameState.count).toLocaleString();
   rebirthDisplay.textContent = gameState.rebirths;
@@ -59,7 +58,7 @@ function checkRebirthUnlock() {
   rebirthButton.style.display = (gameState.count >= rebirthThreshold(gameState.rebirths)) ? "inline-block" : "none";
 }
 
-// BUY ITEMS
+
 function buyItem(index) {
   if (gameState.count >= gameState.itemPrices[index]) {
     gameState.count -= gameState.itemPrices[index];
@@ -90,8 +89,7 @@ function incrementSmoothly(amountPerSecond) {
     if (amountPerSecond <= 0) return;
 
     let added = 0;
-    const intervalTime = 1000 / amountPerSecond; // milliseconds per +1
-
+    const intervalTime = 1000 / amountPerSecond; 
     const interval = setInterval(() => {
         if (added >= amountPerSecond) {
             clearInterval(interval);
@@ -103,12 +101,12 @@ function incrementSmoothly(amountPerSecond) {
     }, intervalTime);
 }
 
-// Replace old auto increment with smooth version
+
 setInterval(() => {
     incrementSmoothly(gameState.soldiersPerSecond);
 }, 1000);
 
-// SAVE/LOAD
+
 function saveGame() { localStorage.setItem("siegeSave", JSON.stringify(gameState)); }
 
 function loadGame() {
@@ -121,18 +119,18 @@ function loadGame() {
 setInterval(saveGame, 5000);
 window.addEventListener("beforeunload", saveGame);
 
-// MINI-GAME STATE
+
 let mini = {
   player: { x: 400, y:0, width:30, height:canvas.height, speed:0, maxSpeed:6, momentum:0.95 },
   line: { x:200, y:canvas.height/2-5, width:100, height:10, speed:0, direction:1, pauseTimer:0 },
   fill:50, duration:30, startTime:0, running:false, spaceHeld:false
 };
 
-// SPACE CONTROLS
+
 document.addEventListener("keydown", e => { if(e.code==="Space") mini.spaceHeld=true; });
 document.addEventListener("keyup", e => { if(e.code==="Space") mini.spaceHeld=false; });
 
-// MINI-GAME FUNCTIONS
+
 function startMiniGameOverlay() {
   overlay.style.display = "block";
   startBtn.style.display = "inline-block";
@@ -201,14 +199,14 @@ function endMini(win) {
 
   if (win) {
     messageBox.textContent = "🏆 Your siege was sucessful! Enjoy the bounties!";
-    performRebirth(true); // Successful siege = rebirth with multiplier
+    performRebirth(true); 
   } else {
     messageBox.textContent = "❌ Your siege failed. All your solders are held permanently captive. REBUILD YOUR ARMY!";
     
     // Punishment reset
-    gameState.count = 0;                     // Fleet gone
-    gameState.soldiersPerSecond = 0;         // Training rate lost
-    gameState.itemPrices = items.map(i => i.cost); // Shop reset
+    gameState.count = 0;                   
+    gameState.soldiersPerSecond = 0;      
+    gameState.itemPrices = items.map(i => i.cost); 
 
     updatePrices();
     updateGame();
@@ -225,17 +223,20 @@ function gameLoopMini() {
   requestAnimationFrame(gameLoopMini);
 }
 
-// REBIRTH
 function performRebirth(multiplier=false) {
-  gameState.count = 0;
-  gameState.rebirths++;
-  gameState.soldiersPerSecond = multiplier ? gameState.soldiersPerSecond : 0;
-  gameState.itemPrices = items.map(i => i.cost);
+  gameState = {
+    count: 0,
+    rebirths: gameState.rebirths + 1,  
+    soldiersPerSecond: multiplier ? gameState.soldiersPerSecond : 0,
+    itemPrices: items.map(i => i.cost) 
+  };
+
   updatePrices();
   updateGame();
+  saveGame();
 }
 
-// RESET ALL
+
 function resetAllData() {
   if (confirm("Are you sure? This will erase all saved progress! (You will kill all your solders!)")) {
     localStorage.removeItem("siegeSave");
@@ -255,5 +256,5 @@ function resetAllData() {
   }
 }
 
-// INIT
+
 window.onload = () => { loadGame(); loadTheme(); updateGame(); };
